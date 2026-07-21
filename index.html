@@ -421,7 +421,7 @@
             transform: scale(1.02);
         }
 
-        /* ===== FEATURES SECTION - PRODUCTS KE NICHE ===== */
+        /* ===== FEATURES SECTION ===== */
         .features {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
@@ -462,8 +462,265 @@
             margin: 0;
         }
 
-        /* ===== ORDER MODAL ===== */
-        .modal-overlay {
+        /* ============================================= */
+        /* ===== PRODUCT DETAIL MODAL (4 IMAGES) ===== */
+        /* ============================================= */
+        .detail-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.7);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            backdrop-filter: blur(5px);
+        }
+        .detail-overlay.active {
+            display: flex;
+        }
+
+        .detail-modal {
+            background: white;
+            max-width: 900px;
+            width: 100%;
+            border-radius: 25px;
+            padding: 30px;
+            max-height: 95vh;
+            overflow-y: auto;
+            animation: slideUp 0.4s ease;
+            position: relative;
+        }
+
+        .detail-modal .close-btn {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            background: #f0f0f0;
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            font-size: 22px;
+            cursor: pointer;
+            transition: 0.3s;
+            z-index: 10;
+            color: #333;
+        }
+        .detail-modal .close-btn:hover {
+            background: #ff6b35;
+            color: white;
+            transform: rotate(90deg);
+        }
+
+        .detail-content {
+            display: flex;
+            gap: 35px;
+            flex-wrap: wrap;
+        }
+
+        /* Left - Images */
+        .detail-images {
+            flex: 1 1 350px;
+        }
+
+        .detail-main-image {
+            width: 100%;
+            height: 380px;
+            background: #f8f9fa;
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            border: 2px solid #f0f0f0;
+        }
+        .detail-main-image img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+            transition: 0.3s;
+        }
+
+        .detail-thumbnails {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+            margin-top: 15px;
+        }
+        .detail-thumbnails .thumb {
+            height: 80px;
+            background: #f8f9fa;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            cursor: pointer;
+            border: 3px solid transparent;
+            transition: 0.3s;
+            padding: 5px;
+        }
+        .detail-thumbnails .thumb:hover {
+            border-color: #ff6b35;
+            transform: scale(1.05);
+        }
+        .detail-thumbnails .thumb.active {
+            border-color: #ff6b35;
+            box-shadow: 0 0 0 3px rgba(255, 107, 53, 0.3);
+        }
+        .detail-thumbnails .thumb img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+        }
+
+        /* Right - Info */
+        .detail-info {
+            flex: 1 1 300px;
+        }
+        .detail-info .category {
+            font-size: 13px;
+            color: #ff6b35;
+            text-transform: uppercase;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+        .detail-info h2 {
+            font-size: 26px;
+            margin: 8px 0 12px;
+            color: #232f3e;
+        }
+        .detail-info .rating {
+            color: #f5a623;
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+        .detail-info .rating span {
+            color: #999;
+            font-size: 14px;
+            margin-left: 8px;
+        }
+        .detail-info .price {
+            font-size: 30px;
+            font-weight: 800;
+            color: #ff6b35;
+            margin: 10px 0;
+        }
+        .detail-info .price small {
+            font-size: 18px;
+            color: #999;
+            text-decoration: line-through;
+            margin-left: 10px;
+            font-weight: 400;
+        }
+        .detail-info .description {
+            color: #666;
+            line-height: 1.7;
+            margin: 15px 0;
+            font-size: 15px;
+        }
+
+        .detail-info .options {
+            margin: 15px 0;
+        }
+        .detail-info .options label {
+            font-weight: 600;
+            display: block;
+            margin-bottom: 8px;
+            color: #444;
+            font-size: 14px;
+        }
+        .detail-info .options .option-group {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        .detail-info .options .option-group button {
+            padding: 8px 20px;
+            border: 2px solid #ddd;
+            background: white;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: 0.3s;
+            font-weight: 500;
+            font-size: 13px;
+        }
+        .detail-info .options .option-group button:hover,
+        .detail-info .options .option-group button.active {
+            border-color: #ff6b35;
+            background: #fff5f0;
+            color: #ff6b35;
+        }
+
+        .detail-info .qty-selector {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin: 20px 0;
+        }
+        .detail-info .qty-selector button {
+            width: 38px;
+            height: 38px;
+            border: 2px solid #ddd;
+            background: white;
+            border-radius: 50%;
+            font-size: 18px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .detail-info .qty-selector button:hover {
+            border-color: #ff6b35;
+            color: #ff6b35;
+        }
+        .detail-info .qty-selector span {
+            font-size: 20px;
+            font-weight: 600;
+            min-width: 40px;
+            text-align: center;
+        }
+
+        .detail-info .action-buttons {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+        .detail-info .action-buttons button {
+            flex: 1;
+            padding: 14px 25px;
+            border: none;
+            border-radius: 30px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: 0.3s;
+            min-width: 130px;
+        }
+        .detail-info .action-buttons .btn-cart-detail {
+            background: #ff6b35;
+            color: white;
+        }
+        .detail-info .action-buttons .btn-cart-detail:hover {
+            background: #e55a2b;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(255, 107, 53, 0.3);
+        }
+        .detail-info .action-buttons .btn-buy-detail {
+            background: #232f3e;
+            color: white;
+        }
+        .detail-info .action-buttons .btn-buy-detail:hover {
+            background: #000;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+        }
+
+        /* ===== ORDER MODAL (Checkout) ===== */
+        .checkout-overlay {
             display: none;
             position: fixed;
             top: 0;
@@ -471,17 +728,17 @@
             width: 100%;
             height: 100%;
             background: rgba(0,0,0,0.6);
-            z-index: 1000;
+            z-index: 3000;
             justify-content: center;
             align-items: center;
             padding: 20px;
             backdrop-filter: blur(4px);
         }
-        .modal-overlay.active {
+        .checkout-overlay.active {
             display: flex;
         }
 
-        .modal {
+        .checkout-modal {
             background: white;
             max-width: 550px;
             width: 100%;
@@ -493,12 +750,7 @@
             position: relative;
         }
 
-        @keyframes slideUp {
-            from { transform: translateY(60px) scale(0.95); opacity: 0; }
-            to { transform: translateY(0) scale(1); opacity: 1; }
-        }
-
-        .modal .close-btn {
+        .checkout-modal .close-btn {
             position: absolute;
             top: 15px;
             right: 20px;
@@ -509,35 +761,35 @@
             color: #999;
             transition: 0.3s;
         }
-        .modal .close-btn:hover {
+        .checkout-modal .close-btn:hover {
             color: #333;
             transform: rotate(90deg);
         }
 
-        .modal h2 {
+        .checkout-modal h2 {
             font-size: 24px;
             margin-bottom: 5px;
         }
-        .modal .subtitle {
+        .checkout-modal .subtitle {
             color: #888;
             font-size: 14px;
             margin-bottom: 20px;
         }
 
-        .order-summary {
+        .checkout-summary {
             background: #f8f9fa;
             padding: 18px;
             border-radius: 15px;
             margin: 15px 0;
             border-left: 4px solid #ff6b35;
         }
-        .order-summary .row {
+        .checkout-summary .row {
             display: flex;
             justify-content: space-between;
             padding: 5px 0;
             font-size: 14px;
         }
-        .order-summary .total {
+        .checkout-summary .total {
             font-weight: 700;
             font-size: 20px;
             color: #ff6b35;
@@ -546,21 +798,21 @@
             margin-top: 5px;
         }
 
-        .modal .form-group {
+        .checkout-modal .form-group {
             margin-bottom: 16px;
         }
-        .modal .form-group label {
+        .checkout-modal .form-group label {
             display: block;
             font-weight: 600;
             margin-bottom: 6px;
             color: #444;
             font-size: 14px;
         }
-        .modal .form-group label .required {
+        .checkout-modal .form-group label .required {
             color: #dc3545;
         }
-        .modal .form-group input,
-        .modal .form-group textarea {
+        .checkout-modal .form-group input,
+        .checkout-modal .form-group textarea {
             width: 100%;
             padding: 12px 16px;
             border: 2px solid #e8e8e8;
@@ -569,18 +821,18 @@
             transition: 0.3s;
             font-family: inherit;
         }
-        .modal .form-group input:focus,
-        .modal .form-group textarea:focus {
+        .checkout-modal .form-group input:focus,
+        .checkout-modal .form-group textarea:focus {
             outline: none;
             border-color: #ff6b35;
             box-shadow: 0 0 0 4px rgba(255, 107, 53, 0.1);
         }
-        .modal .form-group textarea {
+        .checkout-modal .form-group textarea {
             resize: vertical;
             min-height: 70px;
         }
 
-        .modal .btn-submit {
+        .checkout-modal .btn-submit {
             width: 100%;
             padding: 16px;
             background: linear-gradient(135deg, #ff6b35, #e55a2b);
@@ -593,17 +845,17 @@
             transition: 0.3s;
             margin-top: 10px;
         }
-        .modal .btn-submit:hover {
+        .checkout-modal .btn-submit:hover {
             transform: translateY(-2px);
             box-shadow: 0 10px 30px rgba(255, 107, 53, 0.3);
         }
-        .modal .btn-submit:disabled {
+        .checkout-modal .btn-submit:disabled {
             opacity: 0.6;
             cursor: not-allowed;
             transform: none !important;
         }
 
-        #modalStatus {
+        #checkoutStatus {
             margin-top: 15px;
             padding: 12px 18px;
             border-radius: 12px;
@@ -611,26 +863,26 @@
             text-align: center;
             font-weight: 500;
         }
-        #modalStatus.success {
+        #checkoutStatus.success {
             display: block;
             background: #d4edda;
             color: #155724;
             border: 2px solid #c3e6cb;
         }
-        #modalStatus.error {
+        #checkoutStatus.error {
             display: block;
             background: #f8d7da;
             color: #721c24;
             border: 2px solid #f5c6cb;
         }
-        #modalStatus.loading {
+        #checkoutStatus.loading {
             display: block;
             background: #fff3cd;
             color: #856404;
             border: 2px solid #ffeaa7;
         }
 
-        /* ===== TOAST NOTIFICATION ===== */
+        /* ===== TOAST ===== */
         .toast {
             position: fixed;
             bottom: 30px;
@@ -640,7 +892,7 @@
             padding: 16px 25px;
             border-radius: 15px;
             box-shadow: 0 10px 40px rgba(0,0,0,0.2);
-            z-index: 2000;
+            z-index: 4000;
             transform: translateY(100px);
             opacity: 0;
             transition: 0.5s;
@@ -712,6 +964,15 @@
             .features {
                 grid-template-columns: repeat(2, 1fr);
             }
+            .detail-content {
+                flex-direction: column;
+            }
+            .detail-main-image {
+                height: 280px;
+            }
+            .detail-thumbnails .thumb {
+                height: 60px;
+            }
         }
 
         @media (max-width: 768px) {
@@ -780,9 +1041,6 @@
             .feature-item p {
                 font-size: 12px;
             }
-            .modal {
-                padding: 25px 20px;
-            }
             .categories-bar {
                 gap: 15px;
                 padding: 8px 3%;
@@ -795,6 +1053,24 @@
                 right: 15px;
                 left: 15px;
                 max-width: 100%;
+            }
+            .detail-modal {
+                padding: 20px;
+            }
+            .detail-main-image {
+                height: 220px;
+            }
+            .detail-thumbnails .thumb {
+                height: 50px;
+            }
+            .detail-info h2 {
+                font-size: 20px;
+            }
+            .detail-info .price {
+                font-size: 24px;
+            }
+            .checkout-modal {
+                padding: 25px 20px;
             }
         }
 
@@ -843,6 +1119,16 @@
             }
             .feature-item p {
                 font-size: 11px;
+            }
+            .detail-thumbnails {
+                grid-template-columns: repeat(4, 1fr);
+                gap: 8px;
+            }
+            .detail-thumbnails .thumb {
+                height: 40px;
+            }
+            .detail-info .action-buttons {
+                flex-direction: column;
             }
         }
     </style>
@@ -927,7 +1213,7 @@
     <!-- Products will be injected here by JavaScript -->
 </div>
 
-<!-- ===== FEATURES SECTION - PRODUCTS KE NICHE ===== -->
+<!-- ===== FEATURES SECTION ===== -->
 <section class="features">
     <div class="feature-item">
         <i class="fas fa-shipping-fast"></i>
@@ -951,47 +1237,106 @@
     </div>
 </section>
 
-<!-- ===== ORDER MODAL ===== -->
-<div class="modal-overlay" id="orderModal">
-    <div class="modal">
-        <button class="close-btn" id="closeModalBtn">&times;</button>
+<!-- ============================================= -->
+<!-- ===== PRODUCT DETAIL MODAL (4 IMAGES) ===== -->
+<!-- ============================================= -->
+<div class="detail-overlay" id="detailOverlay">
+    <div class="detail-modal">
+        <button class="close-btn" id="closeDetailBtn">&times;</button>
+        
+        <div class="detail-content">
+            <!-- Left - Images -->
+            <div class="detail-images">
+                <div class="detail-main-image">
+                    <img id="detailMainImage" src="" alt="Product" />
+                </div>
+                <div class="detail-thumbnails" id="detailThumbnails">
+                    <!-- 4 thumbnails will be injected here -->
+                </div>
+            </div>
+
+            <!-- Right - Info -->
+            <div class="detail-info">
+                <div class="category" id="detailCategory">FASHION</div>
+                <h2 id="detailTitle">Product Name</h2>
+                <div class="rating" id="detailRating">★★★★☆ <span>(24 reviews)</span></div>
+                <div class="price" id="detailPrice">Rs.399.00 <small>Rs.599.00</small></div>
+                <p class="description" id="detailDesc">Product description goes here.</p>
+
+                <div class="options">
+                    <label>📐 Size:</label>
+                    <div class="option-group" id="detailSizes">
+                        <!-- Sizes injected -->
+                    </div>
+                </div>
+
+                <div class="options">
+                    <label>🎨 Color:</label>
+                    <div class="option-group" id="detailColors">
+                        <!-- Colors injected -->
+                    </div>
+                </div>
+
+                <div class="qty-selector">
+                    <button id="detailQtyMinus">−</button>
+                    <span id="detailQtyValue">1</span>
+                    <button id="detailQtyPlus">+</button>
+                </div>
+
+                <div class="action-buttons">
+                    <button class="btn-cart-detail" id="detailAddToCart">
+                        <i class="fas fa-shopping-cart"></i> Add to Cart
+                    </button>
+                    <button class="btn-buy-detail" id="detailBuyNow">
+                        <i class="fas fa-bolt"></i> Buy Now
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ===== CHECKOUT MODAL ===== -->
+<div class="checkout-overlay" id="checkoutOverlay">
+    <div class="checkout-modal">
+        <button class="close-btn" id="closeCheckoutBtn">&times;</button>
         <h2>📦 Place Your Order</h2>
         <p class="subtitle">✅ Guest Checkout - No account required</p>
 
-        <div class="order-summary" id="orderSummary">
-            <div class="row"><span>Product</span> <strong id="modalProductName">-</strong></div>
-            <div class="row"><span>Size / Color</span> <span id="modalVariant">-</span></div>
-            <div class="row"><span>Quantity</span> <span id="modalQty">1</span></div>
-            <div class="row total"><span>Total Amount</span> <span id="modalTotal">Rs. 0.00</span></div>
+        <div class="checkout-summary" id="checkoutSummary">
+            <div class="row"><span>Product</span> <strong id="checkoutProductName">-</strong></div>
+            <div class="row"><span>Size / Color</span> <span id="checkoutVariant">-</span></div>
+            <div class="row"><span>Quantity</span> <span id="checkoutQty">1</span></div>
+            <div class="row total"><span>Total Amount</span> <span id="checkoutTotal">Rs. 0.00</span></div>
         </div>
 
-        <form id="orderForm">
+        <form id="checkoutForm">
             <div class="form-group">
                 <label>👤 Full Name <span class="required">*</span></label>
-                <input type="text" id="customerName" placeholder="e.g. Rahul Sharma" required />
+                <input type="text" id="checkoutName" placeholder="e.g. Rahul Sharma" required />
             </div>
             <div class="form-group">
                 <label>📱 Mobile Number <span class="required">*</span></label>
-                <input type="tel" id="phone" placeholder="9876543210" required />
+                <input type="tel" id="checkoutPhone" placeholder="9876543210" required />
             </div>
             <div class="form-group">
                 <label>📍 Delivery Address <span class="required">*</span></label>
-                <textarea id="address" placeholder="House no., Street, Landmark, City, State, Pincode" required></textarea>
+                <textarea id="checkoutAddress" placeholder="House no., Street, Landmark, City, State, Pincode" required></textarea>
             </div>
             <div class="form-group">
                 <label>💬 Special Instructions</label>
-                <textarea id="notes" placeholder="Any special request or delivery instructions?"></textarea>
+                <textarea id="checkoutNotes" placeholder="Any special request?"></textarea>
             </div>
 
-            <button type="submit" class="btn-submit" id="submitOrderBtn">
+            <button type="submit" class="btn-submit" id="checkoutSubmitBtn">
                 <i class="fas fa-check-circle"></i> Confirm Order
             </button>
-            <div id="modalStatus"></div>
+            <div id="checkoutStatus"></div>
         </form>
     </div>
 </div>
 
-<!-- ===== TOAST NOTIFICATION ===== -->
+<!-- ===== TOAST ===== -->
 <div class="toast" id="toast">
     <i class="fas fa-check-circle"></i>
     <span id="toastMessage">Added to cart!</span>
@@ -1004,12 +1349,30 @@
         <div>
             <h4>ShopVibe</h4>
             <a href="#">About Us</a>
+            <a href="#">Careers</a>
             <a href="#">Contact</a>
+            <a href="#">Blog</a>
         </div>
         <div>
             <h4>Customer Service</h4>
+            <a href="#">Help Center</a>
             <a href="#">Returns Policy</a>
             <a href="#">Shipping Info</a>
+            <a href="#">FAQs</a>
+        </div>
+        <div>
+            <h4>Quick Links</h4>
+            <a href="#" onclick="scrollToProducts()">Products</a>
+            <a href="#">New Arrivals</a>
+            <a href="#">Best Sellers</a>
+            <a href="#">Sale</a>
+        </div>
+        <div>
+            <h4>Follow Us</h4>
+            <a href="#"><i class="fab fa-facebook"></i> Facebook</a>
+            <a href="#"><i class="fab fa-instagram"></i> Instagram</a>
+            <a href="#"><i class="fab fa-twitter"></i> Twitter</a>
+            <a href="#"><i class="fab fa-youtube"></i> YouTube</a>
         </div>
     </div>
     <div class="footer-bottom">
@@ -1019,7 +1382,7 @@
 
 <script>
     // =============================================
-    // 🔥 FIREBASE CONFIG - APNA YAHAN DAALEIN
+    // 🔥 FIREBASE CONFIG
     // =============================================
 const firebaseConfig = {
   apiKey: "AIzaSyAX-Serk-2O95woq2cgcD02PKGyxO6EIJY",
@@ -1030,11 +1393,12 @@ const firebaseConfig = {
   appId: "1:537384330941:web:da26205cfe94ec2796b9d4",
   measurementId: "G-MYWNKF3CHT"
 };
+
     firebase.initializeApp(firebaseConfig);
     const db = firebase.firestore();
 
     // =============================================
-    // 📦 PRODUCT DATA WITH REAL IMAGES
+    // 📦 PRODUCT DATA (with 4 images each)
     // =============================================
     const products = [
         {
@@ -1045,9 +1409,15 @@ const firebaseConfig = {
             originalPrice: 599,
             rating: 4.5,
             reviews: 24,
-            image: "https://www.cromx.shop/pink.jpeg?w=400&h=400&fit=crop",
+            images: [
+                "https://images.unsplash.com/photo-1566174053879-31528523f8ae?w=500&h=500&fit=crop",
+                "https://images.unsplash.com/photo-1566174053879-31528523f8ae?w=500&h=500&fit=crop&sat=-100",
+                "https://images.unsplash.com/photo-1566174053879-31528523f8ae?w=500&h=500&fit=crop&bright=-30",
+                "https://images.unsplash.com/photo-1566174053879-31528523f8ae?w=500&h=500&fit=crop&con=-20"
+            ],
             badge: "Hot",
             badgeType: "hot",
+            description: "Premium quality night dress made from soft cotton fabric. Perfect for comfortable sleep and lounging. Available in multiple sizes and colors.",
             sizes: ["S", "M", "L", "XL"],
             colors: ["Red", "Black", "Blue", "Gold"]
         },
@@ -1059,9 +1429,15 @@ const firebaseConfig = {
             originalPrice: 1999,
             rating: 4.8,
             reviews: 156,
-            image: "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=400&h=400&fit=crop",
+            images: [
+                "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=500&h=500&fit=crop",
+                "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=500&h=500&fit=crop&sat=-50",
+                "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=500&h=500&fit=crop&bright=-20",
+                "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=500&h=500&fit=crop&con=-10"
+            ],
             badge: "Sale",
             badgeType: "new",
+            description: "High-quality wireless headphones with noise cancellation, 40 hours battery life, and premium sound quality. Perfect for music lovers.",
             sizes: ["One Size"],
             colors: ["Black", "White", "Blue"]
         },
@@ -1073,9 +1449,15 @@ const firebaseConfig = {
             originalPrice: 3999,
             rating: 4.6,
             reviews: 89,
-            image: "https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=400&h=400&fit=crop",
+            images: [
+                "https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=500&h=500&fit=crop",
+                "https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=500&h=500&fit=crop&sat=-30",
+                "https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=500&h=500&fit=crop&bright=-20",
+                "https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=500&h=500&fit=crop&con=-15"
+            ],
             badge: "New",
             badgeType: "new",
+            description: "Advanced smart watch with heart rate monitor, GPS, sleep tracking, and 7 days battery life. Compatible with iOS and Android.",
             sizes: ["One Size"],
             colors: ["Black", "Silver", "Gold"]
         },
@@ -1087,9 +1469,15 @@ const firebaseConfig = {
             originalPrice: 799,
             rating: 4.3,
             reviews: 312,
-            image: "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=400&h=400&fit=crop",
+            images: [
+                "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=500&h=500&fit=crop",
+                "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=500&h=500&fit=crop&sat=-40",
+                "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=500&h=500&fit=crop&bright=-15",
+                "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=500&h=500&fit=crop&con=-10"
+            ],
             badge: "Trending",
             badgeType: "hot",
+            description: "Premium quality 100% cotton t-shirt with comfortable fit. Perfect for casual wear. Available in multiple colors and sizes.",
             sizes: ["S", "M", "L", "XL", "XXL"],
             colors: ["Red", "Blue", "Black", "White", "Green"]
         },
@@ -1101,9 +1489,15 @@ const firebaseConfig = {
             originalPrice: 4999,
             rating: 4.7,
             reviews: 67,
-            image: "https://images.unsplash.com/photo-1570222094114-d054a817e56b?w=400&h=400&fit=crop",
+            images: [
+                "https://images.unsplash.com/photo-1570222094114-d054a817e56b?w=500&h=500&fit=crop",
+                "https://images.unsplash.com/photo-1570222094114-d054a817e56b?w=500&h=500&fit=crop&sat=-30",
+                "https://images.unsplash.com/photo-1570222094114-d054a817e56b?w=500&h=500&fit=crop&bright=-20",
+                "https://images.unsplash.com/photo-1570222094114-d054a817e56b?w=500&h=500&fit=crop&con=-10"
+            ],
             badge: "Sale",
             badgeType: "hot",
+            description: "Powerful 1000W kitchen blender with 6 stainless steel blades. Perfect for smoothies, soups, and juices. Easy to clean.",
             sizes: ["One Size"],
             colors: ["Silver", "Black"]
         },
@@ -1115,9 +1509,15 @@ const firebaseConfig = {
             originalPrice: 1299,
             rating: 4.4,
             reviews: 45,
-            image: "https://images.unsplash.com/photo-1592432678016-e910b452f9a2?w=400&h=400&fit=crop",
+            images: [
+                "https://images.unsplash.com/photo-1592432678016-e910b452f9a2?w=500&h=500&fit=crop",
+                "https://images.unsplash.com/photo-1592432678016-e910b452f9a2?w=500&h=500&fit=crop&sat=-40",
+                "https://images.unsplash.com/photo-1592432678016-e910b452f9a2?w=500&h=500&fit=crop&bright=-15",
+                "https://images.unsplash.com/photo-1592432678016-e910b452f9a2?w=500&h=500&fit=crop&con=-10"
+            ],
             badge: "Popular",
             badgeType: "new",
+            description: "Premium non-slip yoga mat with extra cushioning. Perfect for yoga, pilates, and floor exercises. Eco-friendly material.",
             sizes: ["One Size"],
             colors: ["Purple", "Blue", "Green"]
         },
@@ -1129,9 +1529,15 @@ const firebaseConfig = {
             originalPrice: 2499,
             rating: 4.9,
             reviews: 203,
-            image: "https://images.unsplash.com/photo-1527814050087-3793815479db?w=400&h=400&fit=crop",
+            images: [
+                "https://images.unsplash.com/photo-1527814050087-3793815479db?w=500&h=500&fit=crop",
+                "https://images.unsplash.com/photo-1527814050087-3793815479db?w=500&h=500&fit=crop&sat=-30",
+                "https://images.unsplash.com/photo-1527814050087-3793815479db?w=500&h=500&fit=crop&bright=-20",
+                "https://images.unsplash.com/photo-1527814050087-3793815479db?w=500&h=500&fit=crop&con=-10"
+            ],
             badge: "Best Seller",
             badgeType: "hot",
+            description: "Professional gaming mouse with RGB lighting, 16000 DPI, wireless connectivity, and 50 hours battery life. Ergonomic design.",
             sizes: ["One Size"],
             colors: ["Black", "White"]
         },
@@ -1143,9 +1549,15 @@ const firebaseConfig = {
             originalPrice: 1999,
             rating: 4.2,
             reviews: 78,
-            image: "https://images.unsplash.com/photo-1584917865442-de89df76afd3?w=400&h=400&fit=crop",
+            images: [
+                "https://images.unsplash.com/photo-1584917865442-de89df76afd3?w=500&h=500&fit=crop",
+                "https://images.unsplash.com/photo-1584917865442-de89df76afd3?w=500&h=500&fit=crop&sat=-40",
+                "https://images.unsplash.com/photo-1584917865442-de89df76afd3?w=500&h=500&fit=crop&bright=-15",
+                "https://images.unsplash.com/photo-1584917865442-de89df76afd3?w=500&h=500&fit=crop&con=-10"
+            ],
             badge: "Limited",
             badgeType: "new",
+            description: "Stylish designer handbag made with premium leather. Spacious interior with multiple compartments. Perfect for daily use.",
             sizes: ["One Size"],
             colors: ["Red", "Brown", "Black"]
         }
@@ -1159,7 +1571,10 @@ const firebaseConfig = {
         selectedProduct: null,
         selectedSize: "M",
         selectedColor: "Red",
-        quantity: 1
+        quantity: 1,
+        detailQty: 1,
+        detailSize: "M",
+        detailColor: "Red"
     };
 
     // =============================================
@@ -1172,13 +1587,14 @@ const firebaseConfig = {
         productList.forEach(product => {
             const badgeClass = product.badgeType === 'hot' ? 'hot' : 'new';
             const stars = '★'.repeat(Math.floor(product.rating)) + '☆'.repeat(5 - Math.floor(product.rating));
+            const mainImage = product.images && product.images.length > 0 ? product.images[0] : 'https://via.placeholder.com/400x400/ff6b35/fff?text=Product';
 
             const card = document.createElement('div');
             card.className = 'product-card';
             card.innerHTML = `
                 <div class="product-badge ${badgeClass}">${product.badge}</div>
                 <div class="product-image">
-                    <img src="${product.image}" alt="${product.name}" loading="lazy" onerror="this.src='https://via.placeholder.com/400x400/ff6b35/fff?text=${encodeURIComponent(product.name)}'" />
+                    <img src="${mainImage}" alt="${product.name}" loading="lazy" onerror="this.src='https://via.placeholder.com/400x400/ff6b35/fff?text=${encodeURIComponent(product.name)}'" />
                     <button class="wishlist" onclick="event.stopPropagation(); showToast('❤️ Added to wishlist!')">
                         <i class="far fa-heart"></i>
                     </button>
@@ -1198,13 +1614,288 @@ const firebaseConfig = {
                     </div>
                 </div>
             `;
-            card.addEventListener('click', () => buyNow(product.id));
+            // Click on card = open detail modal
+            card.addEventListener('click', () => openDetail(product.id));
             grid.appendChild(card);
         });
     }
 
     // =============================================
-    // 🛒 ADD TO CART
+    // 🔍 OPEN DETAIL MODAL (4 IMAGES)
+    // =============================================
+    function openDetail(productId) {
+        const product = products.find(p => p.id === productId);
+        if (!product) return;
+
+        state.selectedProduct = product;
+        state.detailQty = 1;
+        state.detailSize = product.sizes && product.sizes.length > 0 ? product.sizes[0] : "M";
+        state.detailColor = product.colors && product.colors.length > 0 ? product.colors[0] : "Red";
+
+        // Set main image
+        const mainImage = product.images && product.images.length > 0 ? product.images[0] : 'https://via.placeholder.com/400x400/ff6b35/fff?text=Product';
+        document.getElementById('detailMainImage').src = mainImage;
+
+        // Set thumbnails (4 images)
+        const thumbContainer = document.getElementById('detailThumbnails');
+        thumbContainer.innerHTML = '';
+        const images = product.images && product.images.length > 0 ? product.images : [mainImage, mainImage, mainImage, mainImage];
+        
+        // Ensure we have at least 4 images (repeat if needed)
+        while (images.length < 4) {
+            images.push(mainImage);
+        }
+        
+        images.slice(0, 4).forEach((img, index) => {
+            const thumb = document.createElement('div');
+            thumb.className = 'thumb' + (index === 0 ? ' active' : '');
+            thumb.innerHTML = `<img src="${img}" alt="Thumb ${index + 1}" onerror="this.src='https://via.placeholder.com/100x100/ff6b35/fff?text=Image'" />`;
+            thumb.addEventListener('click', function() {
+                // Update main image
+                document.getElementById('detailMainImage').src = img;
+                // Update active class
+                document.querySelectorAll('.detail-thumbnails .thumb').forEach(t => t.classList.remove('active'));
+                this.classList.add('active');
+            });
+            thumbContainer.appendChild(thumb);
+        });
+
+        // Set info
+        document.getElementById('detailCategory').textContent = product.category.toUpperCase();
+        document.getElementById('detailTitle').textContent = product.name;
+        const stars = '★'.repeat(Math.floor(product.rating)) + '☆'.repeat(5 - Math.floor(product.rating));
+        document.getElementById('detailRating').innerHTML = `${stars} <span>(${product.reviews} reviews)</span>`;
+        document.getElementById('detailPrice').innerHTML = `Rs.${product.price}.00 <small>Rs.${product.originalPrice}.00</small>`;
+        document.getElementById('detailDesc').textContent = product.description || 'Premium quality product.';
+
+        // Set sizes
+        const sizeContainer = document.getElementById('detailSizes');
+        sizeContainer.innerHTML = '';
+        if (product.sizes && product.sizes.length > 0) {
+            product.sizes.forEach(size => {
+                const btn = document.createElement('button');
+                btn.textContent = size;
+                if (size === state.detailSize) btn.classList.add('active');
+                btn.addEventListener('click', function() {
+                    document.querySelectorAll('#detailSizes button').forEach(b => b.classList.remove('active'));
+                    this.classList.add('active');
+                    state.detailSize = this.textContent;
+                });
+                sizeContainer.appendChild(btn);
+            });
+        } else {
+            sizeContainer.innerHTML = '<span style="color:#888;font-size:14px;">One Size</span>';
+        }
+
+        // Set colors
+        const colorContainer = document.getElementById('detailColors');
+        colorContainer.innerHTML = '';
+        if (product.colors && product.colors.length > 0) {
+            product.colors.forEach(color => {
+                const btn = document.createElement('button');
+                btn.textContent = color;
+                if (color === state.detailColor) btn.classList.add('active');
+                btn.addEventListener('click', function() {
+                    document.querySelectorAll('#detailColors button').forEach(b => b.classList.remove('active'));
+                    this.classList.add('active');
+                    state.detailColor = this.textContent;
+                });
+                colorContainer.appendChild(btn);
+            });
+        } else {
+            colorContainer.innerHTML = '<span style="color:#888;font-size:14px;">Standard</span>';
+        }
+
+        // Set quantity
+        document.getElementById('detailQtyValue').textContent = state.detailQty;
+
+        // Show modal
+        document.getElementById('detailOverlay').classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
+
+    // =============================================
+    // ❌ CLOSE DETAIL MODAL
+    // =============================================
+    function closeDetail() {
+        document.getElementById('detailOverlay').classList.remove('active');
+        document.body.style.overflow = 'auto';
+    }
+
+    document.getElementById('closeDetailBtn').addEventListener('click', closeDetail);
+    document.getElementById('detailOverlay').addEventListener('click', function(e) {
+        if (e.target === this) closeDetail();
+    });
+
+    // =============================================
+    // 🔄 DETAIL QUANTITY CONTROLS
+    // =============================================
+    document.getElementById('detailQtyMinus').addEventListener('click', function() {
+        let qty = parseInt(document.getElementById('detailQtyValue').textContent);
+        if (qty > 1) {
+            qty--;
+            document.getElementById('detailQtyValue').textContent = qty;
+            state.detailQty = qty;
+        }
+    });
+
+    document.getElementById('detailQtyPlus').addEventListener('click', function() {
+        let qty = parseInt(document.getElementById('detailQtyValue').textContent);
+        if (qty < 10) {
+            qty++;
+            document.getElementById('detailQtyValue').textContent = qty;
+            state.detailQty = qty;
+        }
+    });
+
+    // =============================================
+    // 🛒 DETAIL - ADD TO CART
+    // =============================================
+    document.getElementById('detailAddToCart').addEventListener('click', function() {
+        if (!state.selectedProduct) return;
+        state.cartCount++;
+        document.getElementById('cartCount').textContent = state.cartCount;
+        localStorage.setItem('cartCount', state.cartCount);
+        showToast(`✅ ${state.selectedProduct.name} added to cart!`);
+        if (navigator.vibrate) navigator.vibrate(30);
+        closeDetail();
+    });
+
+    // =============================================
+    // 💳 DETAIL - BUY NOW (Open Checkout)
+    // =============================================
+    document.getElementById('detailBuyNow').addEventListener('click', function() {
+        if (!state.selectedProduct) return;
+        closeDetail();
+        setTimeout(() => {
+            openCheckout(state.selectedProduct);
+        }, 300);
+    });
+
+    // =============================================
+    // 💳 OPEN CHECKOUT
+    // =============================================
+    function openCheckout(product) {
+        state.selectedProduct = product;
+        const qty = state.detailQty || 1;
+        const size = state.detailSize || 'N/A';
+        const color = state.detailColor || 'N/A';
+
+        document.getElementById('checkoutProductName').textContent = product.name;
+        document.getElementById('checkoutVariant').textContent = `${size} / ${color}`;
+        document.getElementById('checkoutQty').textContent = qty;
+        document.getElementById('checkoutTotal').textContent = `Rs. ${(product.price * qty).toFixed(2)}`;
+
+        document.getElementById('checkoutForm').reset();
+        document.getElementById('checkoutStatus').className = '';
+        document.getElementById('checkoutStatus').style.display = 'none';
+
+        document.getElementById('checkoutOverlay').classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
+
+    // =============================================
+    // ❌ CLOSE CHECKOUT
+    // =============================================
+    function closeCheckout() {
+        document.getElementById('checkoutOverlay').classList.remove('active');
+        document.body.style.overflow = 'auto';
+    }
+
+    document.getElementById('closeCheckoutBtn').addEventListener('click', closeCheckout);
+    document.getElementById('checkoutOverlay').addEventListener('click', function(e) {
+        if (e.target === this) closeCheckout();
+    });
+
+    // =============================================
+    // 📤 SUBMIT ORDER TO FIREBASE
+    // =============================================
+    document.getElementById('checkoutForm').addEventListener('submit', async function(e) {
+        e.preventDefault();
+
+        const name = document.getElementById('checkoutName').value.trim();
+        const phone = document.getElementById('checkoutPhone').value.trim();
+        const address = document.getElementById('checkoutAddress').value.trim();
+        const notes = document.getElementById('checkoutNotes').value.trim();
+        const statusDiv = document.getElementById('checkoutStatus');
+        const submitBtn = document.getElementById('checkoutSubmitBtn');
+
+        if (!name || !phone || !address) {
+            showCheckoutStatus('⚠️ Please fill all required fields!', 'error');
+            return;
+        }
+
+        if (!/^[0-9]{10}$/.test(phone)) {
+            showCheckoutStatus('⚠️ Please enter a valid 10-digit mobile number!', 'error');
+            return;
+        }
+
+        if (!state.selectedProduct) {
+            showCheckoutStatus('⚠️ No product selected!', 'error');
+            return;
+        }
+
+        const qty = state.detailQty || 1;
+        const size = state.detailSize || 'N/A';
+        const color = state.detailColor || 'N/A';
+
+        submitBtn.disabled = true;
+        submitBtn.innerHTML = '⏳ Submitting...';
+        showCheckoutStatus('📤 Saving your order to Firebase...', 'loading');
+
+        try {
+            const orderData = {
+                productId: state.selectedProduct.id,
+                productName: state.selectedProduct.name,
+                productCategory: state.selectedProduct.category,
+                price: state.selectedProduct.price,
+                size: size,
+                color: color,
+                quantity: qty,
+                total: state.selectedProduct.price * qty,
+                customerName: name,
+                phone: phone,
+                address: address,
+                notes: notes || '',
+                orderDate: firebase.firestore.FieldValue.serverTimestamp(),
+                status: 'pending',
+                orderType: 'guest',
+                paymentMethod: 'COD (Cash on Delivery)'
+            };
+
+            const docRef = await db.collection('orders').add(orderData);
+
+            showCheckoutStatus(`✅ Order Placed Successfully! 🎉\nOrder ID: ${docRef.id.substring(0,8)}`, 'success');
+            submitBtn.innerHTML = '✅ Order Confirmed!';
+
+            state.cartCount++;
+            document.getElementById('cartCount').textContent = state.cartCount;
+            localStorage.setItem('cartCount', state.cartCount);
+
+            setTimeout(() => {
+                closeCheckout();
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = '<i class="fas fa-check-circle"></i> Confirm Order';
+                showToast('🎉 Order placed successfully! Thank you!');
+            }, 3000);
+
+        } catch (error) {
+            console.error('Firebase Error:', error);
+            showCheckoutStatus('❌ Error: ' + error.message, 'error');
+            submitBtn.disabled = false;
+            submitBtn.innerHTML = '<i class="fas fa-check-circle"></i> Confirm Order';
+        }
+    });
+
+    function showCheckoutStatus(message, type) {
+        const statusDiv = document.getElementById('checkoutStatus');
+        statusDiv.textContent = message;
+        statusDiv.className = type;
+        statusDiv.style.display = 'block';
+    }
+
+    // =============================================
+    // 🛒 ADD TO CART (from grid)
     // =============================================
     function addToCart(productId) {
         const product = products.find(p => p.id === productId);
@@ -1218,154 +1909,14 @@ const firebaseConfig = {
     }
 
     // =============================================
-    // 💳 BUY NOW
+    // 💳 BUY NOW (from grid - opens detail)
     // =============================================
     function buyNow(productId) {
-        const product = products.find(p => p.id === productId);
-        if (!product) return;
-
-        state.selectedProduct = product;
-        state.selectedSize = product.sizes[0] || "M";
-        state.selectedColor = product.colors[0] || "Red";
-        state.quantity = 1;
-
-        document.getElementById('modalProductName').textContent = product.name;
-        document.getElementById('modalVariant').textContent = `${state.selectedSize} / ${state.selectedColor}`;
-        document.getElementById('modalQty').textContent = state.quantity;
-        document.getElementById('modalTotal').textContent = `Rs. ${(product.price * state.quantity).toFixed(2)}`;
-
-        document.getElementById('orderForm').reset();
-        document.getElementById('modalStatus').className = '';
-        document.getElementById('modalStatus').style.display = 'none';
-
-        document.getElementById('orderModal').classList.add('active');
-        document.body.style.overflow = 'hidden';
-    }
-
-    // =============================================
-    // 🎯 CLOSE MODAL
-    // =============================================
-    function closeModal() {
-        document.getElementById('orderModal').classList.remove('active');
-        document.body.style.overflow = 'auto';
-    }
-
-    document.getElementById('closeModalBtn').addEventListener('click', closeModal);
-    document.getElementById('orderModal').addEventListener('click', function(e) {
-        if (e.target === this) closeModal();
-    });
-
-    // =============================================
-    // 🔄 QUANTITY UPDATE
-    // =============================================
-    document.addEventListener('DOMContentLoaded', function() {
-        const qtyRow = document.querySelector('.row:has(#modalQty)');
-        if (qtyRow) {
-            qtyRow.innerHTML = `
-                <span>Quantity</span>
-                <span>
-                    <button onclick="updateModalQty(-1)" style="background:#ff6b35;color:white;border:none;border-radius:50%;width:28px;height:28px;cursor:pointer;font-size:16px;font-weight:bold;">−</button>
-                    <span id="modalQty" style="margin:0 12px;font-weight:700;font-size:18px;">1</span>
-                    <button onclick="updateModalQty(1)" style="background:#ff6b35;color:white;border:none;border-radius:50%;width:28px;height:28px;cursor:pointer;font-size:16px;font-weight:bold;">+</button>
-                </span>
-            `;
-        }
-    });
-
-    function updateModalQty(change) {
-        let newQty = parseInt(document.getElementById('modalQty').textContent) + change;
-        if (newQty < 1) newQty = 1;
-        if (newQty > 10) newQty = 10;
-        document.getElementById('modalQty').textContent = newQty;
-        state.quantity = newQty;
-
-        if (state.selectedProduct) {
-            const total = state.selectedProduct.price * newQty;
-            document.getElementById('modalTotal').textContent = `Rs. ${total.toFixed(2)}`;
-        }
-    }
-
-    // =============================================
-    // 📤 SUBMIT ORDER TO FIREBASE
-    // =============================================
-    document.getElementById('orderForm').addEventListener('submit', async function(e) {
-        e.preventDefault();
-
-        const name = document.getElementById('customerName').value.trim();
-        const phone = document.getElementById('phone').value.trim();
-        const address = document.getElementById('address').value.trim();
-        const notes = document.getElementById('notes').value.trim();
-        const statusDiv = document.getElementById('modalStatus');
-        const submitBtn = document.getElementById('submitOrderBtn');
-
-        if (!name || !phone || !address) {
-            showModalStatus('⚠️ Please fill all required fields!', 'error');
-            return;
-        }
-
-        if (!/^[0-9]{10}$/.test(phone)) {
-            showModalStatus('⚠️ Please enter a valid 10-digit mobile number!', 'error');
-            return;
-        }
-
-        if (!state.selectedProduct) {
-            showModalStatus('⚠️ No product selected!', 'error');
-            return;
-        }
-
-        submitBtn.disabled = true;
-        submitBtn.innerHTML = '⏳ Submitting...';
-        showModalStatus('📤 Saving your order to Firebase...', 'loading');
-
-        try {
-            const orderData = {
-                productId: state.selectedProduct.id,
-                productName: state.selectedProduct.name,
-                productCategory: state.selectedProduct.category,
-                price: state.selectedProduct.price,
-                size: state.selectedSize || 'N/A',
-                color: state.selectedColor || 'N/A',
-                quantity: state.quantity,
-                total: state.selectedProduct.price * state.quantity,
-                customerName: name,
-                phone: phone,
-                address: address,
-                notes: notes || '',
-                orderDate: firebase.firestore.FieldValue.serverTimestamp(),
-                status: 'pending',
-                orderType: 'guest',
-                paymentMethod: 'COD (Cash on Delivery)'
-            };
-
-            const docRef = await db.collection('orders').add(orderData);
-
-            showModalStatus(`✅ Order Placed Successfully! 🎉\nOrder ID: ${docRef.id.substring(0,8)}`, 'success');
-            submitBtn.innerHTML = '✅ Order Confirmed!';
-
-            state.cartCount++;
-            document.getElementById('cartCount').textContent = state.cartCount;
-            localStorage.setItem('cartCount', state.cartCount);
-
-            setTimeout(() => {
-                closeModal();
-                submitBtn.disabled = false;
-                submitBtn.innerHTML = '<i class="fas fa-check-circle"></i> Confirm Order';
-                showToast('🎉 Order placed successfully! Thank you!');
-            }, 3000);
-
-        } catch (error) {
-            console.error('Firebase Error:', error);
-            showModalStatus('❌ Error: ' + error.message, 'error');
-            submitBtn.disabled = false;
-            submitBtn.innerHTML = '<i class="fas fa-check-circle"></i> Confirm Order';
-        }
-    });
-
-    function showModalStatus(message, type) {
-        const statusDiv = document.getElementById('modalStatus');
-        statusDiv.textContent = message;
-        statusDiv.className = type;
-        statusDiv.style.display = 'block';
+        openDetail(productId);
+        // Auto-click buy now in detail after 500ms
+        setTimeout(() => {
+            document.getElementById('detailBuyNow').click();
+        }, 500);
     }
 
     // =============================================
@@ -1471,7 +2022,14 @@ const firebaseConfig = {
     // ⌨️ ESCAPE KEY
     // =============================================
     document.addEventListener('keydown', function(e) {
-        if (e.key === 'Escape') closeModal();
+        if (e.key === 'Escape') {
+            if (document.getElementById('detailOverlay').classList.contains('active')) {
+                closeDetail();
+            }
+            if (document.getElementById('checkoutOverlay').classList.contains('active')) {
+                closeCheckout();
+            }
+        }
     });
 
     console.log('✅ All systems ready! 🚀');
