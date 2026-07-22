@@ -3,7 +3,77 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>CromX.Shop - Premium Store</title>
+    
+    <!-- ===== SEO META TAGS ===== -->
+    <title>CromX - Best Online Shopping Store India | Premium Electronics, Fashion & More</title>
+    <meta name="description" content="Shop the best products at CromX. Buy electronics, fashion, gaming accessories, and more. ✓ Free Delivery ✓ COD ✓ 7 Days Return ✓ Guest Checkout" />
+    <meta name="keywords" content="online shopping, buy online, CromX, electronics, fashion, gaming, best deals, shopping store India, COD, free delivery" />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://cromx.shop/" />
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://cromx.shop/" />
+    <meta property="og:title" content="CromX - Best Online Shopping Store India" />
+    <meta property="og:description" content="Shop the best products at CromX. Free Delivery, COD, 7 Days Return. Guest checkout available!" />
+    <meta property="og:image" content="https://cromx.shop/og-image.jpg" />
+    
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="CromX - Best Online Shopping Store India" />
+    <meta name="twitter:description" content="Shop the best products at CromX. Free Delivery, COD, 7 Days Return." />
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>" />
+    
+    <!-- ===== SCHEMA MARKUP (JSON-LD) ===== -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "CromX",
+        "url": "https://cromx.shop/",
+        "potentialAction": {
+            "@type": "SearchAction",
+            "target": "https://cromx.shop/search?q={search_term_string}",
+            "query-input": "required name=search_term_string"
+        }
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "CromX",
+        "url": "https://cromx.shop/",
+        "logo": "https://cromx.shop/logo.png",
+        "description": "Best online shopping store in India. Shop electronics, fashion, gaming accessories with COD and free delivery.",
+        "contactPoint": {
+            "@type": "ContactPoint",
+            "telephone": "+91-9876543210",
+            "contactType": "customer service"
+        }
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Product",
+        "name": "CromX Store Products",
+        "description": "Wide range of premium products including electronics, fashion, gaming accessories, and more.",
+        "brand": {
+            "@type": "Brand",
+            "name": "CromX"
+        },
+        "offers": {
+            "@type": "AggregateOffer",
+            "priceCurrency": "INR",
+            "lowPrice": "399",
+            "highPrice": "4999",
+            "offerCount": "8"
+        }
+    }
+    </script>
     
     <!-- Firebase SDKs -->
     <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
@@ -18,6 +88,10 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
         }
 
         body {
@@ -74,20 +148,64 @@
             z-index: 100;
         }
 
+        /* ===== NEW LOGO - CROMX BRAND ===== */
         .logo {
-            font-size: 28px;
-            font-weight: 900;
-            color: #232f3e;
             display: flex;
             align-items: center;
-            gap: 5px;
+            gap: 10px;
+            text-decoration: none;
         }
-        .logo span {
-            color: #ff6b35;
+        .logo-icon {
+            width: 48px;
+            height: 48px;
+            background: linear-gradient(135deg, #ff6b35, #ff4500);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            box-shadow: 0 4px 15px rgba(255, 107, 53, 0.3);
         }
-        .logo i {
+        .logo-icon i {
+            font-size: 26px;
+            color: white;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+        .logo-icon::after {
+            content: '';
+            position: absolute;
+            top: -3px;
+            right: -3px;
+            width: 12px;
+            height: 12px;
+            background: #28a745;
+            border-radius: 50%;
+            border: 2px solid white;
+        }
+        .logo-text {
+            display: flex;
+            flex-direction: column;
+            line-height: 1.1;
+        }
+        .logo-text .brand {
+            font-size: 28px;
+            font-weight: 900;
+            background: linear-gradient(135deg, #232f3e, #ff6b35);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .logo-text .tagline {
+            font-size: 10px;
+            color: #888;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            -webkit-text-fill-color: #888;
+        }
+        .logo-text .tagline span {
             color: #ff6b35;
-            font-size: 30px;
+            -webkit-text-fill-color: #ff6b35;
         }
 
         .search-bar {
@@ -159,6 +277,13 @@
             padding: 2px 8px;
             font-size: 11px;
             font-weight: bold;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
         }
 
         /* ===== CATEGORIES BAR ===== */
@@ -203,12 +328,12 @@
             overflow: hidden;
         }
         .hero::before {
-            content: '🛒';
+            content: '⚡';
             position: absolute;
             right: -50px;
             top: -50px;
             font-size: 200px;
-            opacity: 0.1;
+            opacity: 0.05;
         }
         .hero-content h1 {
             font-size: 38px;
@@ -718,7 +843,7 @@
         }
 
         /* ============================================= */
-        /* ===== CHECKOUT MODAL - UPDATED ADDRESS ===== */
+        /* ===== CHECKOUT MODAL ===== */
         /* ============================================= */
         .checkout-overlay {
             display: none;
@@ -1029,6 +1154,12 @@
             color: #ff6b35;
         }
 
+        /* ===== ANIMATIONS ===== */
+        @keyframes slideUp {
+            from { transform: translateY(60px) scale(0.95); opacity: 0; }
+            to { transform: translateY(0) scale(1); opacity: 1; }
+        }
+
         /* ===== RESPONSIVE ===== */
         @media (max-width: 992px) {
             .features {
@@ -1148,6 +1279,16 @@
             .form-row {
                 grid-template-columns: 1fr;
             }
+            .logo-text .brand {
+                font-size: 22px;
+            }
+            .logo-icon {
+                width: 40px;
+                height: 40px;
+            }
+            .logo-icon i {
+                font-size: 20px;
+            }
         }
 
         @media (max-width: 480px) {
@@ -1211,14 +1352,29 @@
 </head>
 <body>
 
-
+<!-- ===== TOP BAR ===== -->
+<div class="top-bar">
+    <div>
+        <i class="fas fa-truck"></i> Free Shipping on orders above Rs.499
+    </div>
+    <div>
+        <a href="#"><i class="fas fa-phone"></i> +91 98765 43210</a>
+        <a href="#"><i class="fas fa-envelope"></i> support@cromx.shop</a>
+        <a href="#"><i class="fas fa-user"></i> Guest</a>
+    </div>
+</div>
 
 <!-- ===== HEADER ===== -->
 <header class="header">
-    <div class="logo">
-        <i class="fas fa-store"></i>
-        Shop<span>Vibe</span>
-    </div>
+    <a href="#" class="logo">
+        <div class="logo-icon">
+            <i class="fas fa-bolt"></i>
+        </div>
+        <div class="logo-text">
+            <span class="brand">CromX</span>
+            <span class="tagline">Shop <span>•</span> Premium <span>•</span> Quality</span>
+        </div>
+    </a>
 
     <div class="search-bar">
         <input type="text" placeholder="Search for products, brands & more..." id="searchInput" />
@@ -1251,7 +1407,7 @@
             <i class="fas fa-bolt"></i> Shop Now
         </button>
     </div>
-    <div style="font-size: 80px; opacity: 0.3;">
+    <div style="font-size: 80px; opacity: 0.2;">
         <i class="fas fa-tags"></i>
     </div>
 </section>
@@ -1346,7 +1502,7 @@
 </div>
 
 <!-- ============================================= -->
-<!-- ===== CHECKOUT MODAL - UPDATED ===== -->
+<!-- ===== CHECKOUT MODAL ===== -->
 <!-- ============================================= -->
 <div class="checkout-overlay" id="checkoutOverlay">
     <div class="checkout-modal">
@@ -1450,7 +1606,7 @@
 <footer class="footer">
     <div class="footer-grid">
         <div>
-            <h4>ShopVibe</h4>
+            <h4>CromX</h4>
             <a href="#">About Us</a>
             <a href="#">Careers</a>
             <a href="#">Contact</a>
@@ -1459,12 +1615,22 @@
             <h4>Customer Service</h4>
             <a href="#">Help Center</a>
             <a href="#">Returns Policy</a>
-           
         </div>
-        
+        <div>
+            <h4>Quick Links</h4>
+            <a href="#" onclick="scrollToProducts()">Products</a>
+            <a href="#">New Arrivals</a>
+            <a href="#">Best Sellers</a>
+        </div>
+        <div>
+            <h4>Follow Us</h4>
+            <a href="#"><i class="fab fa-facebook"></i> Facebook</a>
+            <a href="#"><i class="fab fa-instagram"></i> Instagram</a>
+            <a href="#"><i class="fab fa-twitter"></i> Twitter</a>
+        </div>
     </div>
     <div class="footer-bottom">
-        © 2026 <span>CromX.Shop</span>. All rights reserved.
+        © 2026 <span>CromX</span>. All rights reserved. Made with ⚡ in India
     </div>
 </footer>
 
@@ -1472,15 +1638,15 @@
     // =============================================
     // 🔥 FIREBASE CONFIG
     // =============================================
-  const firebaseConfig = {
-  apiKey: "AIzaSyAX-Serk-2O95woq2cgcD02PKGyxO6EIJY",
-  authDomain: "ecommerce-a504f.firebaseapp.com",
-  projectId: "ecommerce-a504f",
-  storageBucket: "ecommerce-a504f.firebasestorage.app",
-  messagingSenderId: "537384330941",
-  appId: "1:537384330941:web:da26205cfe94ec2796b9d4",
-  measurementId: "G-MYWNKF3CHT"
-};
+    const firebaseConfig = {
+        apiKey: "AIzaSyAX-Serk-2O95woq2cgcD02PKGyxO6EIJY",
+        authDomain: "ecommerce-a504f.firebaseapp.com",
+        projectId: "ecommerce-a504f",
+        storageBucket: "ecommerce-a504f.firebasestorage.app",
+        messagingSenderId: "537384330941",
+        appId: "1:537384330941:web:da26205cfe94ec2796b9d4",
+        measurementId: "G-MYWNKF3CHT"
+    };
 
     firebase.initializeApp(firebaseConfig);
     const db = firebase.firestore();
@@ -1491,8 +1657,8 @@
     const products = [
         {
             id: 1,
-            name: "Fancy Vegitable chopper",
-            category: "Electronic",
+            name: "Fancy Vegetable Chopper",
+            category: "Electronics",
             price: 499,
             originalPrice: 599,
             rating: 4.1,
@@ -1505,7 +1671,7 @@
             ],
             badge: "Hot",
             badgeType: "hot",
-            description: "Premium quality night dress made from soft cotton fabric. Perfect for comfortable sleep and lounging.",
+            description: "Premium quality vegetable chopper with stainless steel blades. Make cooking easy and fast.",
             sizes: ["Small"],
             colors: ["White"]
         },
@@ -1730,7 +1896,7 @@
         images.slice(0, 4).forEach((img, index) => {
             const thumb = document.createElement('div');
             thumb.className = 'thumb' + (index === 0 ? ' active' : '');
-            thumb.innerHTML = `<img src="${img}" alt="Thumb ${index + 1}" onerror="this.src='https://via.placeholder.com/100x100/ff6b35/fff?text=Image'" />`;
+            thumb.innerHTML = `<img src="${img}" alt="Thumb ${index + 1}" loading="lazy" onerror="this.src='https://via.placeholder.com/100x100/ff6b35/fff?text=Image'" />`;
             thumb.addEventListener('click', function() {
                 document.getElementById('detailMainImage').src = img;
                 document.querySelectorAll('.detail-thumbnails .thumb').forEach(t => t.classList.remove('active'));
@@ -1878,7 +2044,6 @@
     document.getElementById('checkoutForm').addEventListener('submit', async function(e) {
         e.preventDefault();
 
-        // Get all form values
         const name = document.getElementById('checkoutName').value.trim();
         const phone = document.getElementById('checkoutPhone').value.trim();
         const house = document.getElementById('checkoutHouse').value.trim();
@@ -1893,7 +2058,6 @@
         const statusDiv = document.getElementById('checkoutStatus');
         const submitBtn = document.getElementById('checkoutSubmitBtn');
 
-        // Validations
         if (!name || !phone || !house || !society || !city || !stateField || !pincode) {
             showCheckoutStatus('⚠️ Please fill all required fields!', 'error');
             return;
@@ -1914,7 +2078,6 @@
             return;
         }
 
-        // Build full address
         const fullAddress = `${house}, ${society}${landmark ? ', ' + landmark : ''}, ${city}, ${stateField} - ${pincode}`;
 
         const qty = state.detailQty || 1;
@@ -1937,7 +2100,6 @@
                 total: state.selectedProduct.price * qty,
                 customerName: name,
                 phone: phone,
-                // Address fields (separate)
                 houseNo: house,
                 society: society,
                 landmark: landmark || '',
@@ -2073,7 +2235,7 @@
     document.addEventListener('DOMContentLoaded', function() {
         renderProducts();
         restoreCartCount();
-        console.log('🛍️ ShopVibe Store Loaded!');
+        console.log('⚡ CromX Store Loaded!');
         console.log('🔥 Firebase Connected!');
         console.log('📦 Total Products:', products.length);
     });
