@@ -9,33 +9,20 @@
     <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
 
+    <!-- EmailJS SDK -->
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 
     <style>
         /* ===== RESET ===== */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #f0f2f5; color: #333; }
 
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: #f0f2f5;
-            color: #333;
-        }
-
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-        ::-webkit-scrollbar-track {
-            background: #f1f1f1;
-        }
-        ::-webkit-scrollbar-thumb {
-            background: #ff6b35;
-            border-radius: 10px;
-        }
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #f1f1f1; }
+        ::-webkit-scrollbar-thumb { background: #ff6b35; border-radius: 10px; }
 
         /* ===== TOP BAR ===== */
         .top-bar {
@@ -53,12 +40,8 @@
             margin-left: 20px;
             transition: 0.3s;
         }
-        .top-bar a:hover {
-            color: white;
-        }
-        .top-bar i {
-            margin-right: 5px;
-        }
+        .top-bar a:hover { color: white; }
+        .top-bar i { margin-right: 5px; }
 
         .notification-bell {
             position: relative;
@@ -67,13 +50,8 @@
             border-radius: 10px;
             transition: 0.3s;
         }
-        .notification-bell:hover {
-            background: rgba(255,255,255,0.1);
-        }
-        .notification-bell i {
-            font-size: 22px;
-            color: white;
-        }
+        .notification-bell:hover { background: rgba(255,255,255,0.1); }
+        .notification-bell i { font-size: 22px; color: white; }
         .notification-bell .bell-badge {
             position: absolute;
             top: -5px;
@@ -86,9 +64,7 @@
             font-weight: bold;
             animation: pulse 1.5s infinite;
         }
-        .notification-bell .bell-badge.hidden {
-            display: none;
-        }
+        .notification-bell .bell-badge.hidden { display: none; }
 
         @keyframes pulse {
             0% { transform: scale(1); }
@@ -118,13 +94,8 @@
             align-items: center;
             gap: 5px;
         }
-        .logo span {
-            color: #ff6b35;
-        }
-        .logo i {
-            color: #ff6b35;
-            font-size: 30px;
-        }
+        .logo span { color: #ff6b35; }
+        .logo i { color: #ff6b35; font-size: 30px; }
 
         .search-bar {
             flex: 1;
@@ -158,9 +129,7 @@
             transition: 0.3s;
             font-weight: 600;
         }
-        .search-bar button:hover {
-            background: #e55a2b;
-        }
+        .search-bar button:hover { background: #e55a2b; }
 
         .header-actions {
             display: flex;
@@ -192,9 +161,7 @@
             background: #ff6b35;
             color: white;
         }
-        .header-actions .action.active:hover {
-            background: #e55a2b;
-        }
+        .header-actions .action.active:hover { background: #e55a2b; }
         .cart-badge {
             position: absolute;
             top: -5px;
@@ -228,16 +195,12 @@
             border-bottom: 3px solid transparent;
             white-space: nowrap;
         }
-        .admin-tabs button:hover {
-            color: #ff6b35;
-        }
+        .admin-tabs button:hover { color: #ff6b35; }
         .admin-tabs button.active {
             color: #ff6b35;
             border-bottom-color: #ff6b35;
         }
-        .admin-tabs button i {
-            margin-right: 8px;
-        }
+        .admin-tabs button i { margin-right: 8px; }
 
         /* ===== ADMIN CONTENT ===== */
         .admin-content {
@@ -277,21 +240,11 @@
             font-size: 24px;
             color: white;
         }
-        .stat-card .icon.orange {
-            background: #ff6b35;
-        }
-        .stat-card .icon.blue {
-            background: #4a90d9;
-        }
-        .stat-card .icon.green {
-            background: #28a745;
-        }
-        .stat-card .icon.red {
-            background: #dc3545;
-        }
-        .stat-card .icon.purple {
-            background: #6f42c1;
-        }
+        .stat-card .icon.orange { background: #ff6b35; }
+        .stat-card .icon.blue { background: #4a90d9; }
+        .stat-card .icon.green { background: #28a745; }
+        .stat-card .icon.red { background: #dc3545; }
+        .stat-card .icon.purple { background: #6f42c1; }
         .stat-card .info h3 {
             font-size: 28px;
             font-weight: 800;
@@ -390,12 +343,8 @@
             border-bottom: 1px solid #f0f0f0;
             vertical-align: middle;
         }
-        table tr:hover {
-            background: #fafafa;
-        }
-        table tr:last-child td {
-            border-bottom: none;
-        }
+        table tr:hover { background: #fafafa; }
+        table tr:last-child td { border-bottom: none; }
         table tr.new-order {
             animation: highlightRow 3s ease;
         }
@@ -469,9 +418,7 @@
             font-size: 12px;
             transition: 0.3s;
         }
-        .delete-btn:hover {
-            background: #c82333;
-        }
+        .delete-btn:hover { background: #c82333; }
 
         .order-detail-btn {
             padding: 5px 12px;
@@ -483,9 +430,7 @@
             font-size: 12px;
             transition: 0.3s;
         }
-        .order-detail-btn:hover {
-            background: #e55a2b;
-        }
+        .order-detail-btn:hover { background: #e55a2b; }
 
         .no-orders {
             text-align: center;
@@ -540,9 +485,7 @@
             color: #999;
             transition: 0.3s;
         }
-        .notification-popup .popup-header .popup-close:hover {
-            color: #333;
-        }
+        .notification-popup .popup-header .popup-close:hover { color: #333; }
         .notification-popup .popup-body {
             font-size: 14px;
             color: #333;
@@ -556,9 +499,7 @@
             color: #ff6b35;
         }
 
-        /* ============================================= */
         /* ===== ORDER DETAIL MODAL ===== */
-        /* ============================================= */
         .detail-overlay {
             display: none;
             position: fixed;
@@ -573,9 +514,7 @@
             padding: 20px;
             backdrop-filter: blur(4px);
         }
-        .detail-overlay.active {
-            display: flex;
-        }
+        .detail-overlay.active { display: flex; }
 
         .detail-modal {
             background: white;
@@ -642,9 +581,7 @@
             max-width: 60%;
             word-break: break-word;
         }
-        .detail-row .value strong {
-            color: #ff6b35;
-        }
+        .detail-row .value strong { color: #ff6b35; }
 
         .address-detail-box {
             background: #f8f9fa;
@@ -694,9 +631,7 @@
             flex-wrap: wrap;
             gap: 10px;
         }
-        .detail-status .status-label {
-            font-weight: 600;
-        }
+        .detail-status .status-label { font-weight: 600; }
 
         /* ===== TOAST ===== */
         .toast {
@@ -733,9 +668,7 @@
             font-size: 20px;
             margin-left: 10px;
         }
-        .toast .close-toast:hover {
-            color: white;
-        }
+        .toast .close-toast:hover { color: white; }
 
         /* ===== FOOTER ===== */
         .footer {
@@ -745,9 +678,7 @@
             margin-top: 30px;
             text-align: center;
         }
-        .footer span {
-            color: #ff6b35;
-        }
+        .footer span { color: #ff6b35; }
 
         /* ===== RESPONSIVE ===== */
         @media (max-width: 768px) {
@@ -880,7 +811,7 @@
     <div>
         <a href="#" onclick="switchTab('store')"><i class="fas fa-store"></i> Go to Store</a>
         <a href="#" onclick="loadOrders()"><i class="fas fa-sync"></i> Refresh</a>
-        <a href="#" onclick="testWhatsApp()"><i class="fab fa-whatsapp"></i> Test WhatsApp</a>
+        <a href="#" onclick="testEmail()"><i class="fas fa-envelope"></i> Test Email</a>
     </div>
 </div>
 
@@ -1041,9 +972,7 @@
     </div>
 </div>
 
-<!-- ============================================= -->
 <!-- ===== ORDER DETAIL MODAL ===== -->
-<!-- ============================================= -->
 <div class="detail-overlay" id="detailOverlay">
     <div class="detail-modal">
         <button class="close-btn" id="closeDetailBtn">&times;</button>
@@ -1147,66 +1076,92 @@
     firebase.initializeApp(firebaseConfig);
     const db = firebase.firestore();
 
-   // =============================================
-// 📱 WHATSAPP CONFIG
-// =============================================
-const WHATSAPP_API_KEY = "EPTYQLMFhkGF";
-const WHATSAPP_PHONE = "9825652458"; // Aapka number
+    // =============================================
+    // 📧 EMAILJS CONFIG
+    // =============================================
+    const EMAILJS_PUBLIC_KEY = "QwAZjEPH4cMxsPv9D"; // ⚠️ EmailJS Dashboard se lo
+    const EMAILJS_SERVICE_ID = "service_ak9n9em"; // ✅ Aapka Service ID
+    const EMAILJS_TEMPLATE_ID = "template_plfen5r"; // ⚠️ Apna Template ID daalein
 
-// =============================================
-// 📱 SEND WHATSAPP NOTIFICATION - FIXED
-// =============================================
-async function sendWhatsAppNotification(order) {
-    try {
-        // Message build karein
-        const message = `🛍️ *NEW ORDER RECEIVED!*
+    // =============================================
+    // 📧 SEND EMAIL NOTIFICATION
+    // =============================================
+    async function sendEmailNotification(order) {
+        try {
+            emailjs.init(EMAILJS_PUBLIC_KEY);
+            
+            const templateParams = {
+                order_id: order.id.substring(0, 8),
+                customer_name: order.customerName || 'N/A',
+                customer_phone: order.phone || 'N/A',
+                house_no: order.houseNo || order.address?.split(',')[0]?.trim() || 'N/A',
+                society: order.society || order.address?.split(',')[1]?.trim() || 'N/A',
+                landmark: order.landmark || 'N/A',
+                city: order.city || order.address?.split(',')[2]?.trim() || 'N/A',
+                state: order.state || order.address?.split(',')[3]?.trim() || 'N/A',
+                pincode: order.pincode || 'N/A',
+                full_address: order.fullAddress || order.address || 'N/A',
+                product_name: order.productName || 'N/A',
+                product_category: order.productCategory || 'N/A',
+                variant: `${order.size || 'N/A'} / ${order.color || 'N/A'}`,
+                quantity: order.quantity || 1,
+                price: order.price || 0,
+                total: order.total || (order.price * order.quantity) || 0,
+                payment_method: order.paymentMethod || 'COD (Cash on Delivery)',
+                order_time: new Date().toLocaleString('en-IN', {
+                    day: '2-digit',
+                    month: 'long',
+                    year: 'numeric',
+                    hour: '2-digit',
+                    minute: '2-digit',
+                    second: '2-digit'
+                }),
+                notes: order.notes || 'No notes'
+            };
 
-👤 Customer: ${order.customerName || 'N/A'}
-📱 Phone: ${order.phone || 'N/A'}
-🛒 Product: ${order.productName || 'N/A'}
-💰 Amount: Rs.${order.total || order.price || 0}
-📦 Order ID: #${order.id.substring(0,8)}
-📍 Address: ${order.fullAddress || order.address || 'N/A'}
+            const response = await emailjs.send(
+                EMAILJS_SERVICE_ID,
+                EMAILJS_TEMPLATE_ID,
+                templateParams
+            );
 
-📅 Time: ${new Date().toLocaleString('en-IN')}`;
-
-        // ✅ SAHI URL - send.php
-        const url = `https://api.textmebot.com/send.php?apikey=${WHATSAPP_API_KEY}&text=${encodeURIComponent(message)}`;
-
-        console.log('📤 Sending WhatsApp notification...');
-        
-        const response = await fetch(url);
-        const result = await response.text();
-        
-        if (response.ok) {
-            console.log('✅ WhatsApp notification sent!', result);
-            showToast('📱 WhatsApp notification sent!');
-        } else {
-            console.error('❌ WhatsApp error:', result);
-            showToast('❌ WhatsApp error: ' + result);
+            if (response.status === 200) {
+                console.log('✅ Email sent successfully!');
+                showToast('📧 Email notification sent to admin!');
+            } else {
+                console.error('❌ Email error:', response);
+            }
+        } catch (error) {
+            console.error('❌ Email send error:', error);
+            showToast('❌ Email error: ' + error.message);
         }
-    } catch (error) {
-        console.error('❌ WhatsApp send error:', error);
-        showToast('❌ WhatsApp error: ' + error.message);
     }
-}
 
-// =============================================
-// 📱 TEST WHATSAPP FUNCTION
-// =============================================
-async function testWhatsApp() {
-    const testOrder = {
-        id: "TEST123",
-        customerName: "Test Customer",
-        phone: "9876543210",
-        productName: "Test Product",
-        total: 499,
-        address: "Test Address, Mumbai"
-    };
-    
-    showToast('📤 Sending test WhatsApp message...');
-    await sendWhatsAppNotification(testOrder);
-}
+    // =============================================
+    // 📧 TEST EMAIL
+    // =============================================
+    async function testEmail() {
+        const testOrder = {
+            id: "TEST123",
+            customerName: "Test Customer",
+            phone: "9876543210",
+            productName: "Test Product",
+            price: 499,
+            total: 499,
+            quantity: 1,
+            address: "Test Address, Mumbai",
+            fullAddress: "Test Address, Mumbai",
+            houseNo: "123",
+            society: "Test Society",
+            city: "Mumbai",
+            state: "Maharashtra",
+            pincode: "400001",
+            notes: "Test notes"
+        };
+        
+        showToast('📤 Sending test email...');
+        await sendEmailNotification(testOrder);
+    }
 
     // =============================================
     // 📦 STATE
@@ -1241,7 +1196,6 @@ async function testWhatsApp() {
             if (audio) {
                 audio.volume = 0.5;
                 audio.play().catch(() => {
-                    // Fallback beep
                     try {
                         const ctx = new (window.AudioContext || window.webkitAudioContext)();
                         const oscillator = ctx.createOscillator();
@@ -1381,14 +1335,14 @@ async function testWhatsApp() {
                         notifiedOrderIds.add(order.id);
                         notificationCount++;
                         
-                        // ===== ALL NOTIFICATIONS =====
+                        // ===== EMAIL NOTIFICATION =====
+                        await sendEmailNotification(order);
+                        
+                        // ===== OTHER NOTIFICATIONS =====
                         showPopupNotification(order);
                         showBrowserNotification(order);
                         playNotificationSound();
                         showToast(`🛍️ New Order: ${order.customerName || 'Customer'}`);
-                        
-                        // ===== WHATSAPP NOTIFICATION =====
-                        await sendWhatsAppNotification(order);
                     }
                 });
                 updateBellBadge();
@@ -1436,14 +1390,14 @@ async function testWhatsApp() {
                             notifiedOrderIds.add(order.id);
                             notificationCount++;
                             
-                            // ===== ALL NOTIFICATIONS =====
+                            // ===== EMAIL NOTIFICATION =====
+                            await sendEmailNotification(order);
+                            
+                            // ===== OTHER NOTIFICATIONS =====
                             showPopupNotification(order);
                             showBrowserNotification(order);
                             playNotificationSound();
                             showToast(`🛍️ New Order: ${order.customerName || 'Customer'}`);
-                            
-                            // ===== WHATSAPP NOTIFICATION =====
-                            await sendWhatsAppNotification(order);
 
                             // Highlight new row
                             setTimeout(() => {
@@ -1471,7 +1425,7 @@ async function testWhatsApp() {
 
                 document.getElementById('liveStatus').textContent = '🟢 Live';
                 document.getElementById('liveStatus').style.color = '#28a745';
-                document.getElementById('liveStatusText').textContent = '🟢 Live Notifications ON (WhatsApp + Browser)';
+                document.getElementById('liveStatusText').textContent = '🟢 Live Notifications ON (Email + Browser)';
             }, (error) => {
                 console.error('Realtime listener error:', error);
                 document.getElementById('liveStatus').textContent = '🔴 Offline';
@@ -1781,6 +1735,9 @@ async function testWhatsApp() {
             localStorage.removeItem('viewMode');
         }
 
+        // EmailJS init
+        emailjs.init(EMAILJS_PUBLIC_KEY);
+
         loadOrders();
         setupRealtimeListener();
 
@@ -1792,9 +1749,9 @@ async function testWhatsApp() {
 
         console.log('🛍️ ShopVibe Admin Panel Loaded!');
         console.log('🔥 Firebase Connected!');
-        console.log('📱 WhatsApp API Key:', EPTYQLMFhkGF);
-        console.log('📱 WhatsApp Phone:', 9825652458);
-        console.log('🔔 Real-time notifications ENABLED!');
+        console.log('📧 EmailJS Service ID:', EMAILJS_SERVICE_ID);
+        console.log('📧 EmailJS Template ID:', EMAILJS_TEMPLATE_ID);
+        console.log('📧 Email will be sent to: pal982565@gmail.com');
     });
 
     // =============================================
@@ -1817,7 +1774,6 @@ async function testWhatsApp() {
 
     console.log('✅ Admin Panel Ready!');
     console.log('📌 Shortcuts: Ctrl+R=Refresh, Ctrl+N=Notifications, ESC=Close popup');
-    console.log('📱 WhatsApp notification will be sent on every new order!');
 </script>
 
 </body>
