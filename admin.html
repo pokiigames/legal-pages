@@ -9,8 +9,8 @@
     <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
 
-    <!-- EmailJS SDK -->
-    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <!-- EmailJS SDK - VERSION 3 (FIXED) -->
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
 
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
@@ -1077,18 +1077,22 @@
     const db = firebase.firestore();
 
     // =============================================
-    // 📧 EMAILJS CONFIG
+    // 📧 EMAILJS CONFIG - FIXED ✅
     // =============================================
-    const EMAILJS_PUBLIC_KEY = "user_QwAZjEPH4cMxsPv9D"; // ⚠️ EmailJS Dashboard se lo
-    const EMAILJS_SERVICE_ID = "service_ak9n9em"; // ✅ Aapka Service ID
-    const EMAILJS_TEMPLATE_ID = "template_plfen5r"; // ⚠️ Apna Template ID daalein
+    const EMAILJS_PUBLIC_KEY = "user_QwAZjEPH4cMxsPv9D";
+    const EMAILJS_SERVICE_ID = "service_ak9n9em";
+    const EMAILJS_TEMPLATE_ID = "template_pkd8sfl";
+    const ADMIN_EMAIL = "pal982565@gmail.com";
 
     // =============================================
-    // 📧 SEND EMAIL NOTIFICATION
+    // 📧 SEND EMAIL NOTIFICATION - FIXED ✅
     // =============================================
     async function sendEmailNotification(order) {
         try {
-            emailjs.init(EMAILJS_PUBLIC_KEY);
+            // ✅ SAHI TARIKA - Version 3
+            emailjs.init({
+                publicKey: EMAILJS_PUBLIC_KEY
+            });
             
             const templateParams = {
                 order_id: order.id.substring(0, 8),
@@ -1119,6 +1123,8 @@
                 notes: order.notes || 'No notes'
             };
 
+            console.log('📤 Sending email...', templateParams);
+
             const response = await emailjs.send(
                 EMAILJS_SERVICE_ID,
                 EMAILJS_TEMPLATE_ID,
@@ -1130,6 +1136,7 @@
                 showToast('📧 Email notification sent to admin!');
             } else {
                 console.error('❌ Email error:', response);
+                showToast('❌ Email error: ' + response.text);
             }
         } catch (error) {
             console.error('❌ Email send error:', error);
@@ -1159,7 +1166,7 @@
             notes: "Test notes"
         };
         
-        showToast('📤 Sending test email...');
+        showToast('📤 Sending test email to ' + ADMIN_EMAIL + '...');
         await sendEmailNotification(testOrder);
     }
 
@@ -1735,8 +1742,10 @@
             localStorage.removeItem('viewMode');
         }
 
-        // EmailJS init
-        emailjs.init(EMAILJS_PUBLIC_KEY);
+        // EmailJS init with public key (Version 3 style)
+        emailjs.init({
+            publicKey: EMAILJS_PUBLIC_KEY
+        });
 
         loadOrders();
         setupRealtimeListener();
@@ -1749,9 +1758,12 @@
 
         console.log('🛍️ ShopVibe Admin Panel Loaded!');
         console.log('🔥 Firebase Connected!');
-        console.log('📧 EmailJS Service ID:', EMAILJS_SERVICE_ID);
-        console.log('📧 EmailJS Template ID:', EMAILJS_TEMPLATE_ID);
-        console.log('📧 Email will be sent to: pal982565@gmail.com');
+        console.log('📧 EmailJS Config:');
+        console.log('   Service ID:', EMAILJS_SERVICE_ID);
+        console.log('   Template ID:', EMAILJS_TEMPLATE_ID);
+        console.log('   Public Key:', EMAILJS_PUBLIC_KEY);
+        console.log('   Admin Email:', ADMIN_EMAIL);
+        console.log('📧 Test email by clicking "Test Email" button!');
     });
 
     // =============================================
