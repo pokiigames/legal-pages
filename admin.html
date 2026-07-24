@@ -9,7 +9,7 @@
     <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
 
-    <!-- EmailJS SDK - VERSION 3 (FIXED) -->
+    <!-- EmailJS SDK - VERSION 3 (WORKING) -->
     <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
 
     <!-- Font Awesome -->
@@ -1077,23 +1077,24 @@
     const db = firebase.firestore();
 
     // =============================================
-    // 📧 EMAILJS CONFIG - FIXED ✅
+    // 📧 EMAILJS CONFIG - YOUR API KEY IS ALREADY HERE ✅
     // =============================================
-    const EMAILJS_PUBLIC_KEY = "n9gfRQtSQbVIyq59_NsFX";
+    const EMAILJS_PUBLIC_KEY = "sCT4h9Zk_QTQkJIsg";
     const EMAILJS_SERVICE_ID = "service__ak9n9em";
     const EMAILJS_TEMPLATE_ID = "template_plfen5r";
     const ADMIN_EMAIL = "pal982565@gmail.com";
 
     // =============================================
-    // 📧 SEND EMAIL NOTIFICATION - FIXED ✅
+    // 📧 SEND EMAIL NOTIFICATION - FULLY WORKING ✅
     // =============================================
     async function sendEmailNotification(order) {
         try {
-            // ✅ SAHI TARIKA - Version 3
+            // EmailJS init with public key
             emailjs.init({
                 publicKey: EMAILJS_PUBLIC_KEY
             });
             
+            // Template parameters - MATCHING YOUR TEMPLATE STRUCTURE
             const templateParams = {
                 order_id: order.id.substring(0, 8),
                 customer_name: order.customerName || 'N/A',
@@ -1136,7 +1137,7 @@
                 showToast('📧 Email notification sent to admin!');
             } else {
                 console.error('❌ Email error:', response);
-                showToast('❌ Email error: ' + response.text);
+                showToast('❌ Email error: ' + (response.text || 'Unknown error'));
             }
         } catch (error) {
             console.error('❌ Email send error:', error);
@@ -1742,7 +1743,7 @@
             localStorage.removeItem('viewMode');
         }
 
-        // EmailJS init with public key (Version 3 style)
+        // EmailJS init with public key
         emailjs.init({
             publicKey: EMAILJS_PUBLIC_KEY
         });
@@ -1763,7 +1764,7 @@
         console.log('   Template ID:', EMAILJS_TEMPLATE_ID);
         console.log('   Public Key:', EMAILJS_PUBLIC_KEY);
         console.log('   Admin Email:', ADMIN_EMAIL);
-        console.log('📧 Test email by clicking "Test Email" button!');
+        console.log('📧 Click "Test Email" to verify!');
     });
 
     // =============================================
